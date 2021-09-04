@@ -1,0 +1,70 @@
+{
+  "exchanges": [
+    {
+      "$bindings": ["SagaProducer"],
+      "name": "sagas.exchange",
+      "type": "topic",
+      "options": { "durable": true }
+    },
+    {
+      "$bindings": ["CommandProducer"],
+      "name": "commands.exchange",
+      "type": "topic",
+      "options": { "durable": true }
+    },
+    {
+      "$bindings": ["EventProducer"],
+      "name": "events.exchange",
+      "type": "topic",
+      "options": { "durable": true }
+    }
+  ],
+  "queues": [
+    {
+      "name": "sagas",
+      "options": { "durable": true }
+    },
+    {
+      "name": "email.service",
+      "options": { "durable": true }
+    },
+    {
+      "name": "user.service",
+      "options": { "durable": true }
+    }
+  ],
+  "bindings": [
+    {
+      "source": "sagas.exchange",
+      "destination": "sagas"
+    },
+    {
+      "source": "events.exchange",
+      "destination": "sagas"
+    },
+    {
+      "source": "commands.exchange",
+      "destination": "email.service",
+      "pattern": "email.#.command"
+    },
+    {
+      "source": "commands.exchange",
+      "destination": "user.service",
+      "pattern": "user.#.command"
+    }
+  ],
+  "consumers": [
+    {
+      "$bindings": ["SagaSubscriber"],
+      "queueName": "sagas"
+    },
+    {
+      "$bindings": ["EmailServiceSubscriber"],
+      "queueName": "email.service"
+    },
+    {
+      "$bindings": ["UserServiceSubscriber"],
+      "queueName": "user.service"
+    }
+  ]
+}

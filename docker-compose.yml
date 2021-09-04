@@ -1,0 +1,46 @@
+version: "3.8"
+services:
+  broker:
+    image: rabbitmq:3.9-management
+    ports:
+      - 15672:15672
+
+  sagas:
+    image: node
+    depends_on:
+      - broker
+    volumes:
+      - .:/home/app
+    working_dir: /home/app
+    entrypoint: ["npm", "run", "start:sagas"]
+
+  email:
+    image: node
+    depends_on:
+      - broker
+    volumes:
+      - .:/home/app
+    working_dir: /home/app
+    entrypoint: ["npm", "run", "start:email"]
+    deploy:
+      replicas: 2
+
+  user:
+    image: node
+    depends_on:
+      - broker
+    volumes:
+      - .:/home/app
+    working_dir: /home/app
+    entrypoint: ["npm", "run", "start:user"]
+
+  gateway:
+    image: node
+    depends_on:
+      - broker
+    volumes:
+      - .:/home/app
+    working_dir: /home/app
+    entrypoint: ["npm", "run", "start:gateway"]
+    ports:
+      - 8080:8080

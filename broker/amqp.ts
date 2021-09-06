@@ -72,7 +72,7 @@ export abstract class AmqpProducer implements Producer {
     console.log(
       `Publishing on "${binding}" message "${
         message.key
-      } with headers: ${JSON.stringify(message.headers)}"`,
+      }" with headers: ${JSON.stringify(message.headers)}"`,
     )
     await this.amqpClient.publish(binding, message)
   }

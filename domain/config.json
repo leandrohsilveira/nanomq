@@ -36,11 +36,13 @@
   "bindings": [
     {
       "source": "sagas.exchange",
-      "destination": "sagas"
+      "destination": "sagas",
+      "pattern": "sagas.#"
     },
     {
       "source": "events.exchange",
-      "destination": "sagas"
+      "destination": "sagas",
+      "pattern": "#.event"
     },
     {
       "source": "commands.exchange",

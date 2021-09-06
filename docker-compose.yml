@@ -22,8 +22,8 @@ services:
       - .:/home/app
     working_dir: /home/app
     entrypoint: ["npm", "run", "start:email"]
-    deploy:
-      replicas: 2
+    # deploy:
+    #   replicas: 2
 
   user:
     image: node

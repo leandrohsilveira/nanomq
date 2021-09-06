@@ -1,0 +1,37 @@
+{
+  "name": "@app/email",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Leandro Hinckel Silveira <leandro.hinckel@gmail.com>",
+  "homepage": "https://github.com/leandrohsilveira/nanomq#readme",
+  "license": "ISC",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandrohsilveira/nanomq.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leandrohsilveira/nanomq/issues"
+  },
+  "scripts": {
+    "prebuild": "rm -Rf dist/*",
+    "build": "tsc --build",
+    "start": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@nanomq/api": "0.0.0",
+    "@nanomq/menash": "0.0.0",
+    "@app/domain": "0.0.0",
+    "rxjs": "^7.3.0",
+    "typescript": "^4.4.2"
+  }
+}

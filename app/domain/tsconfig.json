@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2020",
+    "jsx": "preserve",
+    "strictFunctionTypes": true,
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "outDir": "./lib"
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
+}

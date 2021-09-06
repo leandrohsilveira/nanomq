@@ -17,7 +17,7 @@ export class GatewayServer {
     server.use(express.json())
     // TODO: extract to a router
     server.post("/user/signup", async (req, res) => {
-      await this.sagaProducer.publish(new UserSignupSaga(null, req.body))
+      await this.sagaProducer.publish(new UserSignupSaga(req.body))
 
       res.sendStatus(200)
     })

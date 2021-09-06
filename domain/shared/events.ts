@@ -1,8 +1,8 @@
 import { AmqpInboundMessage, Headers } from "broker/amqp"
 import { v4 } from "uuid"
 
-export interface MessageType<T, R> {
-  new (source?: AmqpInboundMessage, content?: T, headers?: Headers): R
+export interface MessageType<T, R extends MessageEntity<T>> {
+  new (content?: T, headers?: Headers): R
   key: string
 }
 
@@ -11,15 +11,11 @@ export function createSagaId(saga: string) {
 }
 
 export abstract class MessageEntity<T> extends AmqpInboundMessage<T> {
-  constructor(
-    key: string,
-    public source?: AmqpInboundMessage<T>,
-    content?: T,
-    headers?: Headers,
-  ) {
-    super(key, content ?? source?.content, headers ?? source?.headers ?? {})
-    this.validateSourceMessage()
+  constructor(key: string, content?: T, headers?: Headers) {
+    super(key, content, headers ?? {})
   }
+
+  source?: AmqpInboundMessage<T>
 
   ack() {
     if (this.source) this.source.ack()
@@ -38,16 +34,18 @@ export abstract class MessageEntity<T> extends AmqpInboundMessage<T> {
     content?: C,
     headers?: Headers,
   ): R {
-    return new messageType(null, content ?? (this.content as any), {
+    return new messageType(content ?? (this.content as any), {
       ...this.headers,
       ...(headers ?? {}),
     })
   }
+}
 
-  private validateSourceMessage() {
-    if (this.source && this.source.key !== this.key)
-      throw new Error(
-        `Source message key "${this.source.key}" diverges from entity message key "${this.key}"`,
-      )
-  }
+export function fromSource<C, R extends MessageEntity<C>>(
+  source: AmqpInboundMessage,
+  messageType: MessageType<C, R>,
+) {
+  const message = new messageType(source.content, source.headers)
+  message.source = source
+  return message
 }

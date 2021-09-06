@@ -8,6 +8,7 @@ import {
   switchMap,
   tap,
 } from "rxjs"
+import { fromSource } from "."
 import { MessageEntity, MessageType } from "./events"
 
 export type ServiceOutput<M extends MessageEntity<any>, O> = {
@@ -17,11 +18,11 @@ export type ServiceOutput<M extends MessageEntity<any>, O> = {
 
 function fromConsumerMessage<C, R extends MessageEntity<C>>(
   message: AmqpInboundMessage,
-  inbound: { new (message: AmqpInboundMessage): R; key: string },
+  messageType: MessageType<C, R>,
 ) {
-  if (message.key === inbound.key) return new inbound(message)
+  if (message.key === messageType.key) return fromSource(message, messageType)
   throw new Error(
-    `Consumer's message routingKey "${message.key}" is not assignable to type ${inbound} of key "${inbound.key}"`,
+    `Consumer's message routingKey "${message.key}" is not assignable to type ${messageType} of key "${messageType.key}"`,
   )
 }
 

@@ -1,14 +1,9 @@
-import { AmqpInboundMessage, Headers } from "broker/amqp"
+import { Headers } from "broker/amqp"
 import { createSagaId, MessageEntity, MessageType } from "./events"
 
 export abstract class SagaMessageEntity<T> extends MessageEntity<T> {
-  constructor(
-    key: string,
-    source?: AmqpInboundMessage,
-    content?: T,
-    headers?: Headers,
-  ) {
-    super(key, source, content, {
+  constructor(key: string, content?: T, headers?: Headers) {
+    super(key, content, {
       ...(headers ?? {}),
       saga: key,
       sagaId: createSagaId(key),
@@ -20,7 +15,7 @@ export abstract class SagaMessageEntity<T> extends MessageEntity<T> {
     content?: C,
     headers?: Headers,
   ): R {
-    return new messageType(null, content ?? (this.content as any), {
+    return new messageType(content ?? (this.content as any), {
       ...this.headers,
       ...(headers ?? {}),
       saga: this.headers.saga,
@@ -34,5 +29,5 @@ export function fromEvent<I, O, R extends SagaMessageEntity<O>>(
   sagaType: MessageType<O, R>,
   content?: O,
 ) {
-  return new sagaType(null, content ?? (event.content as any))
+  return new sagaType(content ?? (event.content as any))
 }

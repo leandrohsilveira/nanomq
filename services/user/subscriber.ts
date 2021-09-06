@@ -1,4 +1,4 @@
-import { AmqpSubscriber, Producer } from "broker/amqp"
+import { AmqpSubscriber, Producer } from "@nanomq/broker"
 import { UserServiceSignupStream } from "./stream/signup"
 
 export class UserServiceSubscriber extends AmqpSubscriber {

@@ -1,4 +1,4 @@
-import { MenashAmqpClient, ServiceApp } from "@mqmicro/broker"
+import { MenashAmqpClient, ServiceApp } from "@nanomq/broker"
 import { SagaSubscriber } from "./subscriber"
 import { SagaServiceImpl } from "./service"
 import { CommandProducer } from "domain/shared"

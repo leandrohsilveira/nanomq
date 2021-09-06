@@ -1,4 +1,4 @@
-import { MenashAmqpClient, ServiceApp } from "@mqmicro/broker"
+import { MenashAmqpClient, ServiceApp } from "@nanomq/broker"
 import { EventProducer } from "domain/shared"
 import topology from "domain/topology"
 import { EmailServiceSubscriber } from "./subscriber"

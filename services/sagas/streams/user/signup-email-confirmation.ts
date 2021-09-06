@@ -1,4 +1,4 @@
-import { AmqpMessageStream } from "@mqmicro/broker"
+import { AmqpMessageStream } from "@nanomq/broker"
 import { EmailSentEvent } from "domain/email"
 import {
   UserSignedUpEvent,

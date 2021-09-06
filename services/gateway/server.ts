@@ -1,5 +1,5 @@
 import * as express from "express"
-import { ServiceApp } from "@mqmicro/broker"
+import { ServiceApp } from "@nanomq/broker"
 import { UserSignupSaga } from "domain/user"
 import { SagaProducer } from "domain/shared"
 

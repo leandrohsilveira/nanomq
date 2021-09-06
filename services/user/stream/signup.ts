@@ -1,4 +1,4 @@
-import { AmqpMessageStream } from "broker/amqp"
+import { AmqpMessageStream } from "@nanomq/broker"
 import { ofMessage, service } from "domain/shared"
 import { UserSignUpCommand } from "domain/user"
 import { of, pipe } from "rxjs"

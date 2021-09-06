@@ -1,4 +1,4 @@
-import { AmqpInboundMessage } from "broker/amqp"
+import { AmqpInboundMessage } from "@nanomq/broker"
 import {
   filter,
   map,

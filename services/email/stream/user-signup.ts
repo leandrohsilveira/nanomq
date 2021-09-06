@@ -1,5 +1,5 @@
 import { map, pipe, tap } from "rxjs"
-import { AmqpMessageStream } from "broker/amqp"
+import { AmqpMessageStream } from "@nanomq/broker"
 import { EmailSendCommand } from "domain/email"
 import { ofMessage } from "domain/shared"
 

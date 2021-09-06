@@ -1,4 +1,4 @@
-import { AmqpClient, AmqpProducer } from "@mqmicro/broker"
+import { AmqpClient, AmqpProducer } from "@nanomq/broker"
 
 export class SagaProducer extends AmqpProducer {
   constructor(amqp: AmqpClient) {

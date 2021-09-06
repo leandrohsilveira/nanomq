@@ -1,4 +1,4 @@
-import { Headers } from "broker/amqp"
+import { Headers } from "@nanomq/broker"
 import { MessageEntity } from "../shared"
 import { EmailSentEvent } from "./events"
 import { EmailSendModel } from "./model"

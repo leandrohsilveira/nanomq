@@ -1,6 +1,6 @@
 import { map, pipe } from "rxjs"
 import { SagaService } from "../../service"
-import { AmqpMessageStream } from "@mqmicro/broker"
+import { AmqpMessageStream } from "@nanomq/broker"
 import { UserSignedUpEvent, UserSignupSaga } from "domain/user"
 
 export class UserSignupSagaStream extends AmqpMessageStream {

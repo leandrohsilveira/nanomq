@@ -1,4 +1,4 @@
-import { Headers } from "broker/amqp"
+import { Headers } from "@nanomq/broker"
 import { createSagaId, MessageEntity, MessageType } from "./events"
 
 export abstract class SagaMessageEntity<T> extends MessageEntity<T> {

@@ -8,7 +8,7 @@ import {
   switchMap,
 } from "rxjs"
 
-import { AmqpInboundMessage, AmqpOutboundMessage } from "broker/amqp"
+import { AmqpInboundMessage, AmqpOutboundMessage } from "@nanomq/broker"
 import {
   MessageEntity,
   MessageType,

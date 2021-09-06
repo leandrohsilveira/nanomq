@@ -1,4 +1,4 @@
-import { AmqpInboundMessage, Headers } from "broker/amqp"
+import { AmqpInboundMessage, Headers } from "@nanomq/broker"
 import { v4 } from "uuid"
 
 export interface MessageType<T, R extends MessageEntity<T>> {

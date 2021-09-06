@@ -1,4 +1,4 @@
-import { Headers } from "broker/amqp"
+import { Headers } from "@nanomq/broker"
 import { EmailSendCommand } from "../email"
 import { fromEvent, SagaMessageEntity } from "../shared"
 import { UserSignUpCommand } from "./commands"

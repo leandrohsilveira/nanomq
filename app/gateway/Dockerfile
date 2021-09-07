@@ -4,9 +4,8 @@ ENV PORT=8080
 
 WORKDIR /home/app
 
-COPY package.json .
-COPY node_modules .
-COPY dist .
+COPY package.json package.json
+COPY dist dist
 
 EXPOSE ${PORT}
 

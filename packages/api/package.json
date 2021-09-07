@@ -18,7 +18,10 @@
   },
   "scripts": {
     "prebuild": "rm -Rf lib/*",
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "prebuild:dev": "rm -Rf lib/*",
+    "build:dev": "tsc --build",
+    "build:watch": "npm run build:dev -- --watch"
   },
   "bugs": {
     "url": "https://github.com/leandrohsilveira/nanomq/issues"

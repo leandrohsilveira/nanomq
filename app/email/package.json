@@ -23,15 +23,21 @@
     "url": "https://github.com/leandrohsilveira/nanomq/issues"
   },
   "scripts": {
-    "prebuild": "rm -Rf dist/*",
-    "build": "tsc --build",
+    "build": "webpack build",
+    "build:watch": "npm run build -- --watch",
     "start": "node ./dist/index.js"
   },
   "dependencies": {
     "@nanomq/api": "0.0.0",
     "@nanomq/menash": "0.0.0",
     "@app/domain": "0.0.0",
-    "rxjs": "^7.3.0",
-    "typescript": "^4.4.2"
+    "rxjs": "^7.3.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.2",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0"
   }
 }
